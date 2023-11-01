@@ -6,36 +6,57 @@ import machine
 import json
 import time
 import umqtt.simple
-import neopixel
 import math
 import network
+import atom
 
 # Add other necessary imports here
 
-print("Starting")
+print("Starting Atom Matrix")
+
+# get instance
+MX = atom.Matrix()
+
 
 ##### initialize built-in stuff first ######
 ### LED
-neoPin = 27
-p = machine.Pin(neoPin)
-RGB = neopixel.NeoPixel(p,25)
-
 def rgbFill(color):
-    global RGB
-    RGB.fill(color)
-    RGB.write()
+    """ set all pixels to same color (r,g,b) """
+    global MX
+    MX.set_pixels_color(*color)
 
 def rgbSet(pos,color):
-    global RGB
-    RGB[pos-1] = color
-    RGB.write()
+    """ set pixel at index (from 1) to color (r,g,b) """
+    global MX
+    MX.set_pixel_color(pos-1,*color)
 
+def rgbGet(pos):
+    """ set pixel color at index (from 1). return color (r,g,b) """
+    global MX
+    return MX.get_pixel_color(pos - 1)
 
 ### IMU
 
 
 ### Button
+# mx.get_button_status()
+# set_button_callback()
+def getBtn():
+    """ get button vlaue. return 0 if pressed """
+    global MX
+    return MX.get_button_status()
 
+def setBtnCallback(fn):
+    """ set button pressed callback. needs lamda  """
+    global MX
+    MX.set_button_callback(lambda f:fn())
+
+def clrBtnCallback():
+    """ clr button pressed callback  """
+    global MX
+    MX.set_button_callback(None)
+
+clrBtnCallback()
 
 ##### check sensors on grove port ######
 
@@ -44,10 +65,12 @@ def rgbSet(pos,color):
 
 # SCL: yellow, pin 32
 # SDA: white, pin 26
+# On Matrix, this is I2C1. HW i2c not working. maybe too fast?
 extI2c = machine.SoftI2C(scl=machine.Pin(32), sda=machine.Pin(26))
 
-# internal ic2 is for imu
+# internal ic2 is for imu. not on a default HW I2C
 intI2c = machine.SoftI2C(scl=machine.Pin(21), sda=machine.Pin(25))
+
 
 
 SENSORS = {
@@ -107,6 +130,14 @@ rgbSet(23, (51,255,255))
 rgbSet(24, (10,10,10))
 
 time.sleep(2)
-rgbFill((0,0,0))
+rgbFill((0,50,0))
 
+def btn():
+    print("btn")
+
+setBtnCallback(btn)
+
+time.sleep(5)
+clrBtnCallback()
+rgbFill((0,0,0))
 
