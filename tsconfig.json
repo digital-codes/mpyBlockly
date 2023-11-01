@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowJs": true, // Allow JavaScript files to be compiled
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.js"], // Include TypeScript and JavaScript files
+  "exclude": ["node_modules"]
+}
+

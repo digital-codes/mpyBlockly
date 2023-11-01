@@ -1,0 +1,27 @@
+{
+  "name": "mpy_blockly",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "toolbox": "node src/makeToolbox.js",
+    "dev": "node src/makeToolbox.js; vite",
+    "build": "node src/makeToolbox.js; vite build",
+    "preview": "node src/makeToolbox.js; vite preview"
+  },
+  "dependencies": {
+    "@blockly/field-colour": "^3.0.6",
+    "@blockly/field-colour-hsv-sliders": "^4.1.4",
+    "@blockly/field-dependent-dropdown": "^3.0.5",
+    "@blockly/field-multilineinput": "^3.0.6",
+    "@blockly/field-slider": "^6.0.5",
+    "blockly": "^10.2.2",
+    "typescript": "^5.2.2",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5",
+    "xml-js": "^1.6.11"
+  }
+}
