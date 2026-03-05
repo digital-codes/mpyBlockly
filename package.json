@@ -10,12 +10,12 @@
     "preview": "node src/makeToolbox.js; vite preview"
   },
   "dependencies": {
-    "@blockly/field-colour": "^3.0.12",
-    "@blockly/field-colour-hsv-sliders": "^4.2.1",
-    "@blockly/field-dependent-dropdown": "^3.0.12",
-    "@blockly/field-multilineinput": "^3.0.12",
-    "@blockly/field-slider": "^6.1.5",
-    "blockly": "^10.4.2",
+    "@blockly/field-colour": "^6.0.11",
+    "@blockly/field-colour-hsv-sliders": "^6.0.11",
+    "@blockly/field-dependent-dropdown": "^5.0.9",
+    "@blockly/field-multilineinput": "^6.0.8",
+    "@blockly/field-slider": "^8.0.8",
+    "blockly": "^12.4.1",
     "typescript": "^5.3.3",
     "vue": "^3.4.19"
   },
